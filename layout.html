@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+   * {
+      box-sizing: border-box;
+      margin: 0;
+      border: 1px solid black;
+    }
+</style>
+<body>
+  <div id="root"></div>
+  <script>
+    const root = document.getElementById('root');
+
+    function makeElement(tagName, parent, number) {
+      for (let i = 0; i < number; i++) {
+        const a = document.createElement(tagName);
+        parent.appendChild(a);
+      }
+    }
+    
+    function makeAttribute(tagName, attributeName, attributeValue){
+      tagName.setAttribute(attributeName,attributeValue);
+    }
+    
+    function makeObject(object){
+      for(let i = 0; i < object.first.length; i++){
+        object.element.style[object.first[i]]=object.second[i];
+      }
+    }
+    
+    makeElement('form',root,1);
+    makeAttribute(root.children[0],'method',"post");
+    makeAttribute(root.children[0],'action',"");
+
+    makeElement('input', root.children[0], 1);
+    makeElement('button',root.children[0],1);
+
+    const rootStyle = {
+      first : ['width', 'height'],
+      second : ['100vw','100vh'],
+      element : root
+    }
+    makeObject(rootStyle);
+
+    const divStyle = {
+      first : ['width','height','display'],
+      second : ['30vw','20vh','flex'],
+      element : root.children[0]
+    }
+    makeObject(divStyle);
+
+    const inputStyle = {
+      first : ['width','height'],
+      second : ['20vw','20vh'],
+      element : root.children[0].children[0]
+    }
+    makeObject(inputStyle);
+
+    const buttonStyle = {
+      first : ['width','height'],
+      second : ['10vw','20vh'],
+      element : root.children[0].children[1]
+    }
+    makeObject(buttonStyle);
+  </script>
+  <script src="data.js"></script>
+</body>
+
+</html>
